@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 import ffmpeg
 
 if TYPE_CHECKING:
-    from pikaraoke.lib.file_resolver import FileResolver
+    from ryomakaraoke.lib.file_resolver import FileResolver
 
 
 def get_media_duration(file_path: str) -> int | None:

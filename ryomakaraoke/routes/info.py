@@ -4,15 +4,15 @@ import flask_babel
 import psutil
 from flask import Blueprint, render_template
 
-from pikaraoke import VERSION
-from pikaraoke.constants import LANGUAGES
-from pikaraoke.lib.current_app import (
+from ryomakaraoke import VERSION
+from ryomakaraoke.constants import LANGUAGES
+from ryomakaraoke.lib.current_app import (
     get_admin_password,
     get_karaoke_instance,
     get_site_name,
     is_admin,
 )
-from pikaraoke.lib.get_platform import get_platform
+from ryomakaraoke.lib.get_platform import get_platform
 
 _ = flask_babel.gettext
 
@@ -75,7 +75,7 @@ def info():
         ffmpeg_version=k.ffmpeg_version,
         is_transpose_enabled=k.is_transpose_enabled,
         youtubedl_version=youtubedl_version,
-        pikaraoke_version=VERSION,
+        ryomakaraoke_version=VERSION,
         cpu=cpu,
         memory=memory,
         disk=disk,

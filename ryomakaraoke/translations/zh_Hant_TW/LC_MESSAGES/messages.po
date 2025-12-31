@@ -142,12 +142,12 @@ msgstr "您沒有權限更新 youtube-dl"
 msgid "You don't have permission to refresh the song list"
 msgstr "您無權刷新歌曲列表"
 
-#. Message shown after quitting pikaraoke.
+#. Message shown after quitting ryomakaraoke.
 #: routes/admin.py:82
-msgid "Exiting pikaraoke now!"
+msgid "Exiting ryomakaraoke now!"
 msgstr "正在退出卡拉OK派！"
 
-#. Message shown after trying to quit pikaraoke without admin permissions.
+#. Message shown after trying to quit ryomakaraoke without admin permissions.
 #: routes/admin.py:89
 msgid "You don't have permission to quit"
 msgstr "您沒有權限退出"
@@ -558,7 +558,7 @@ msgid "Are you sure you want to quit?"
 msgstr "您確定要退出嗎？"
 
 #. Confirmation text whe the user starts to turn off the machine running
-#. Pikaraoke.
+#. ryomakaraoke.
 #: templates/info.html:72
 msgid "Are you sure you want to shut down?"
 msgstr "您確定要關機嗎？"
@@ -569,7 +569,7 @@ msgid "Are you sure you want to clear your preferences?"
 msgstr "您確定要清除您的偏好設定嗎？"
 
 #. Confirmation text whe the user starts to reboot the machine running
-#. Pikaraoke.
+#. ryomakaraoke.
 #: templates/info.html:88
 msgid "Are you sure you want to reboot?"
 msgstr "您確定要重新啟動嗎？"
@@ -604,7 +604,7 @@ msgstr "方便分享給朋友的網址 QR 碼："
 msgid "System Data"
 msgstr "系統統計"
 
-#. Header of the information section about the computer running Pikaraoke.
+#. Header of the information section about the computer running ryomakaraoke.
 #: templates/info.html:168
 msgid "System Info"
 msgstr "系統資訊"
@@ -629,9 +629,9 @@ msgstr "Youtube-dl (yt-dlp) 版本："
 msgid "FFmpeg version:"
 msgstr "FFmpeg 版本："
 
-#. The version of Pikaraoke running right now.
+#. The version of ryomakaraoke running right now.
 #: templates/info.html:182
-msgid "Pikaraoke version:"
+msgid "ryomakaraoke version:"
 msgstr "卡拉OK派版本："
 
 #. Header of the information section about the System stats.
@@ -639,19 +639,19 @@ msgstr "卡拉OK派版本："
 msgid "System stats"
 msgstr "系統統計"
 
-#. The CPU usage of the computer running Pikaraoke.
+#. The CPU usage of the computer running ryomakaraoke.
 #: templates/info.html:194
 #, python-format
 msgid "CPU: %(cpu)s"
 msgstr "CPU：%(cpu)s"
 
-#. The disk usage of the computer running Pikaraoke. Used by downloaded songs.
+#. The disk usage of the computer running ryomakaraoke. Used by downloaded songs.
 #: templates/info.html:196
 #, python-format
 msgid "Disk Usage: %(disk)s"
 msgstr "磁碟使用量：%(disk)s"
 
-#. The memory (RAM) usage of the computer running Pikaraoke.
+#. The memory (RAM) usage of the computer running ryomakaraoke.
 #: templates/info.html:198
 #, python-format
 msgid "Memory: %(memory)s"
@@ -850,10 +850,10 @@ msgstr "重新整理歌曲列表："
 #: templates/info.html:399
 msgid ""
 "You should only need to do this if you manually copied files to the "
-"download directory while pikaraoke was running."
+"download directory while ryomakaraoke was running."
 msgstr "只有當卡拉OK派正在運行時，您手動複製檔案到下載目錄，才需要執行此操作。"
 
-#. Text on the link which forces Pikaraoke to rescan and pick up any new songs.
+#. Text on the link which forces ryomakaraoke to rescan and pick up any new songs.
 #: templates/info.html:404
 msgid "Rescan song directory"
 msgstr "重新掃描歌曲目錄"
@@ -877,25 +877,25 @@ msgstr ""
 "   當前安裝的版本是：\"%(youtubedl_version)s\""
 
 #. Text for the link which will try and update youtube-dl on the machine
-#. running Pikaraoke.
+#. running ryomakaraoke.
 #: templates/info.html:422
 msgid "Update youtube-dl"
 msgstr "更新 youtube-dl"
 
 #. Help text which explains why updating youtube-dl can fail. The log is a file
-#. on the machine running Pikaraoke.
+#. on the machine running ryomakaraoke.
 #: templates/info.html:426
 #, fuzzy
 msgid ""
 "* This update link above may fail if you don't have proper file "
 "permissions.\n"
-"\t\t\t\t\t\t\tCheck the pikaraoke log for errors."
+"\t\t\t\t\t\t\tCheck the ryomakaraoke log for errors."
 msgstr ""
 "如果您沒有適當的檔案權限，上面的更新連結可能會失敗。\n"
 "    檢查卡拉OK派日誌以查看錯誤。"
 
 #. Title of the section on shutting down / turning off the machine running
-#. Pikaraoke.
+#. ryomakaraoke.
 #: templates/info.html:438
 msgid "Shutdown"
 msgstr "關機"
@@ -907,18 +907,18 @@ msgid ""
 "data corruption."
 msgstr "不要直接拔掉電源！始終正確關閉您的伺服器，以避免資料損壞。"
 
-#. Text for button which turns off Pikaraoke for everyone using it at your
+#. Text for button which turns off ryomakaraoke for everyone using it at your
 #. house.
 #: templates/info.html:452
-msgid "Quit Pikaraoke"
+msgid "Quit ryomakaraoke"
 msgstr "退出卡拉OK派"
 
-#. Text for button which reboots the machine running Pikaraoke.
+#. Text for button which reboots the machine running ryomakaraoke.
 #: templates/info.html:455
 msgid "Reboot System"
 msgstr "重新啟動系統"
 
-#. Text for button which turn soff the machine running Pikaraoke.
+#. Text for button which turn soff the machine running ryomakaraoke.
 #: templates/info.html:458
 msgid "Shutdown System"
 msgstr "關閉系統"
@@ -939,7 +939,7 @@ msgstr "擴展樹莓派檔案系統"
 #: templates/info.html:479
 #, fuzzy
 msgid ""
-"If you just installed the pre-built pikaraoke pi image and your SD card "
+"If you just installed the pre-built ryomakaraoke pi image and your SD card "
 "is larger than 4GB,\n"
 "\t\t\t\t\t\t\tyou may want to expand the filesystem to utilize the "
 "remaining space. You only need to do this once.\n"
@@ -1223,7 +1223,7 @@ msgstr "您的分數"
 #: templates/splash.html:642
 msgid ""
 "Due to limititations with browser permissions, you must interact\n"
-"      with the page once before it allows autoplay of videos. Pikaraoke "
+"      with the page once before it allows autoplay of videos. ryomakaraoke "
 "will not\n"
 "      play otherwise. Click the button below to\n"
 "      <a onClick=\"handleConfirmation()\">confirm</a> ."

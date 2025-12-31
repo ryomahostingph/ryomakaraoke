@@ -18,7 +18,7 @@ COPY docs ./docs
 RUN poetry install --only main --no-root
 
 # Copy the rest of the files and install the remaining deps in a separate layer
-COPY pikaraoke ./pikaraoke
+COPY ryomakaraoke ./ryomakaraoke
 RUN poetry install
 
-ENTRYPOINT ["poetry", "run", "pikaraoke", "-d", "/app/pikaraoke-songs/", "--headless"]
+ENTRYPOINT ["poetry", "run", "ryomakaraoke", "-d", "/app/ryomakaraoke-songs/", "--headless"]

@@ -6,8 +6,8 @@ import subprocess
 import flask_babel
 from flask import Blueprint, render_template
 
-from pikaraoke.lib.current_app import get_karaoke_instance
-from pikaraoke.lib.raspi_wifi_config import get_raspi_wifi_text
+from ryomakaraoke.lib.current_app import get_karaoke_instance
+from ryomakaraoke.lib.raspi_wifi_config import get_raspi_wifi_text
 
 _ = flask_babel.gettext
 

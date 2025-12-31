@@ -13,7 +13,7 @@ from threading import Timer
 
 import requests
 
-from pikaraoke.lib.get_platform import get_platform, is_raspberry_pi
+from ryomakaraoke.lib.get_platform import get_platform, is_raspberry_pi
 
 
 def get_default_vlc_path(platform):
@@ -54,9 +54,9 @@ class VLCClient:
 
         # Determine tmp directories (for things like extracted cdg files)
         if self.platform == "windows":
-            self.tmp_dir = os.path.expanduser(r"~\\AppData\\Local\\Temp\\pikaraoke\\")
+            self.tmp_dir = os.path.expanduser(r"~\\AppData\\Local\\Temp\\ryomakaraoke\\")
         else:
-            self.tmp_dir = "/tmp/pikaraoke/"
+            self.tmp_dir = "/tmp/ryomakaraoke/"
 
         # Set up command line args
         self.cmd_base = [
@@ -99,7 +99,7 @@ class VLCClient:
     def get_marquee_cmd(self):
         return [
             "--sub-source",
-            'logo{file=%s,position=9,x=2,opacity=200}:marq{marquee="Pikaraoke - connect at: \n%s",position=9,x=38,color=0xFFFFFF,size=11,opacity=200}'
+            'logo{file=%s,position=9,x=2,opacity=200}:marq{marquee="ryomakaraoke - connect at: \n%s",position=9,x=38,color=0xFFFFFF,size=11,opacity=200}'
             % (self.qrcode, self.url),
         ]
 

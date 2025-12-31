@@ -879,7 +879,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pikaraoke"
+name = "ryomakaraoke"
 version = "1.14.1"
 source = { editable = "." }
 dependencies = [

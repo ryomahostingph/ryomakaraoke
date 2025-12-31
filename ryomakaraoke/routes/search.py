@@ -14,7 +14,7 @@ from flask import (
     url_for,
 )
 
-from pikaraoke.lib.current_app import get_karaoke_instance, get_site_name
+from ryomakaraoke.lib.current_app import get_karaoke_instance, get_site_name
 
 _ = flask_babel.gettext
 

@@ -3,7 +3,7 @@
 import flask_babel
 from flask import Blueprint, flash, jsonify, redirect, request, url_for
 
-from pikaraoke.lib.current_app import get_karaoke_instance, is_admin
+from ryomakaraoke.lib.current_app import get_karaoke_instance, is_admin
 
 preferences_bp = Blueprint("preferences", __name__)
 

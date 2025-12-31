@@ -30,7 +30,7 @@ jobs:
 
           try:
               # Import app to get all routes registered
-              from pikaraoke.app import app, swagger
+              from ryomakaraoke.app import app, swagger
 
               # Get the spec using the swagger object directly
               with app.app_context():

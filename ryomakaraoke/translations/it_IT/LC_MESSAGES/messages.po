@@ -144,12 +144,12 @@ msgstr "Non hai l'autorizzazione per aggiornare youtube-dl"
 msgid "You don't have permission to refresh the song list"
 msgstr "Non hai l'autorizzazione per ridimensionare il file system"
 
-#. Message shown after quitting pikaraoke.
+#. Message shown after quitting ryomakaraoke.
 #: routes/admin.py:82
-msgid "Exiting pikaraoke now!"
-msgstr "Chiusura di Pikaraoke!"
+msgid "Exiting ryomakaraoke now!"
+msgstr "Chiusura di ryomakaraoke!"
 
-#. Message shown after trying to quit pikaraoke without admin permissions.
+#. Message shown after trying to quit ryomakaraoke without admin permissions.
 #: routes/admin.py:89
 msgid "You don't have permission to quit"
 msgstr "Non hai il permesso di chiudere"
@@ -572,7 +572,7 @@ msgid "Are you sure you want to quit?"
 msgstr "Sei sicuro di voler uscire?"
 
 #. Confirmation text whe the user starts to turn off the machine running
-#. Pikaraoke.
+#. ryomakaraoke.
 #: templates/info.html:72
 msgid "Are you sure you want to shut down?"
 msgstr "Sei sicuro di voler spegnere?"
@@ -583,7 +583,7 @@ msgid "Are you sure you want to clear your preferences?"
 msgstr "Sei sicuro di voler cancellare le tue preferenze?"
 
 #. Confirmation text whe the user starts to reboot the machine running
-#. Pikaraoke.
+#. ryomakaraoke.
 #: templates/info.html:88
 msgid "Are you sure you want to reboot?"
 msgstr "Sei sicuro di voler riavviare?"
@@ -620,7 +620,7 @@ msgstr "Codice QR URL utile da condividere con un amico:"
 msgid "System Data"
 msgstr "Statistiche di sistema"
 
-#. Header of the information section about the computer running Pikaraoke.
+#. Header of the information section about the computer running ryomakaraoke.
 #: templates/info.html:168
 msgid "System Info"
 msgstr "Informazioni di sistema"
@@ -645,29 +645,29 @@ msgstr "Youtube-dl (yt-dlp) versione:"
 msgid "FFmpeg version:"
 msgstr "FFmpeg versione:"
 
-#. The version of Pikaraoke running right now.
+#. The version of ryomakaraoke running right now.
 #: templates/info.html:182
-msgid "Pikaraoke version:"
-msgstr "Pikaraoke versione:"
+msgid "ryomakaraoke version:"
+msgstr "ryomakaraoke versione:"
 
 #. Header of the information section about the System stats.
 #: templates/info.html:188
 msgid "System stats"
 msgstr "Statistiche di sistema"
 
-#. The CPU usage of the computer running Pikaraoke.
+#. The CPU usage of the computer running ryomakaraoke.
 #: templates/info.html:194
 #, python-format
 msgid "CPU: %(cpu)s"
 msgstr "CPU: %(cpu)s"
 
-#. The disk usage of the computer running Pikaraoke. Used by downloaded songs.
+#. The disk usage of the computer running ryomakaraoke. Used by downloaded songs.
 #: templates/info.html:196
 #, python-format
 msgid "Disk Usage: %(disk)s"
 msgstr "Uso Disco: %(disk)s"
 
-#. The memory (RAM) usage of the computer running Pikaraoke.
+#. The memory (RAM) usage of the computer running ryomakaraoke.
 #: templates/info.html:198
 #, python-format
 msgid "Memory: %(memory)s"
@@ -885,12 +885,12 @@ msgstr "Aggiorna l'elenco dei brani:"
 #: templates/info.html:399
 msgid ""
 "You should only need to do this if you manually copied files to the "
-"download directory while pikaraoke was running."
+"download directory while ryomakaraoke was running."
 msgstr ""
 "Dovresti farlo solo se hai copiato manualmente file nella directory "
-"download mentre pikaraoke era in esecuzione."
+"download mentre ryomakaraoke era in esecuzione."
 
-#. Text on the link which forces Pikaraoke to rescan and pick up any new songs.
+#. Text on the link which forces ryomakaraoke to rescan and pick up any new songs.
 #: templates/info.html:404
 msgid "Rescan song directory"
 msgstr "Riscansiona la cartella dei brani"
@@ -915,26 +915,26 @@ msgstr ""
 " La versione attualmente installata è: \"%(youtubedl_version)s\""
 
 #. Text for the link which will try and update youtube-dl on the machine
-#. running Pikaraoke.
+#. running ryomakaraoke.
 #: templates/info.html:422
 msgid "Update youtube-dl"
 msgstr "Aggiorna youtube-dl"
 
 #. Help text which explains why updating youtube-dl can fail. The log is a file
-#. on the machine running Pikaraoke.
+#. on the machine running ryomakaraoke.
 #: templates/info.html:426
 #, fuzzy
 msgid ""
 "* This update link above may fail if you don't have proper file "
 "permissions.\n"
-"\t\t\t\t\t\t\tCheck the pikaraoke log for errors."
+"\t\t\t\t\t\t\tCheck the ryomakaraoke log for errors."
 msgstr ""
 "Il link d'aggiornamento potrebbe non funzionare se non hai i permessi "
 "file adeguati.\n"
-" Controlla i log di pikaraoke per eventuali errori."
+" Controlla i log di ryomakaraoke per eventuali errori."
 
 #. Title of the section on shutting down / turning off the machine running
-#. Pikaraoke.
+#. ryomakaraoke.
 #: templates/info.html:438
 msgid "Shutdown"
 msgstr "Spegnimento"
@@ -948,18 +948,18 @@ msgstr ""
 "Non staccare la spina! Spegni sempre correttamente il server per evitare "
 "corruzione dei dati."
 
-#. Text for button which turns off Pikaraoke for everyone using it at your
+#. Text for button which turns off ryomakaraoke for everyone using it at your
 #. house.
 #: templates/info.html:452
-msgid "Quit Pikaraoke"
-msgstr "Esci da Pikaraoke"
+msgid "Quit ryomakaraoke"
+msgstr "Esci da ryomakaraoke"
 
-#. Text for button which reboots the machine running Pikaraoke.
+#. Text for button which reboots the machine running ryomakaraoke.
 #: templates/info.html:455
 msgid "Reboot System"
 msgstr "Riavvia il sistema"
 
-#. Text for button which turn soff the machine running Pikaraoke.
+#. Text for button which turn soff the machine running ryomakaraoke.
 #: templates/info.html:458
 msgid "Shutdown System"
 msgstr "Spegni il sistema"
@@ -980,13 +980,13 @@ msgstr "Espandi il file system del Raspberry Pi"
 #: templates/info.html:479
 #, fuzzy
 msgid ""
-"If you just installed the pre-built pikaraoke pi image and your SD card "
+"If you just installed the pre-built ryomakaraoke pi image and your SD card "
 "is larger than 4GB,\n"
 "\t\t\t\t\t\t\tyou may want to expand the filesystem to utilize the "
 "remaining space. You only need to do this once.\n"
 "\t\t\t\t\t\t\tThis will reboot the system."
 msgstr ""
-"Se hai appena installato l'immagine pre-costruita di pikaraoke pi e la "
+"Se hai appena installato l'immagine pre-costruita di ryomakaraoke pi e la "
 "tua scheda SD è più grande di 4 GB,\n"
 " potresti voler espandere il file system per utilizzare lo spazio "
 "rimanente. Devi farlo solo una volta.\n"
@@ -1267,14 +1267,14 @@ msgstr "Il tuo punteggio"
 #: templates/splash.html:642
 msgid ""
 "Due to limititations with browser permissions, you must interact\n"
-"      with the page once before it allows autoplay of videos. Pikaraoke "
+"      with the page once before it allows autoplay of videos. ryomakaraoke "
 "will not\n"
 "      play otherwise. Click the button below to\n"
 "      <a onClick=\"handleConfirmation()\">confirm</a> ."
 msgstr ""
 "A causa delle limitazioni con i permessi del browser, devi interagire\n"
 " con la pagina una volta prima che consenta la riproduzione automatica "
-"dei video. Pikaraoke non\n"
+"dei video. ryomakaraoke non\n"
 " verrà riprodotto in caso contrario. Fai clic sul pulsante in basso per\n"
 " <a onClick=\"handleConfirmation()\">conferma</a> ."
 

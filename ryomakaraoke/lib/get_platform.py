@@ -1,4 +1,4 @@
-"""Platform detection utilities for PiKaraoke."""
+"""Platform detection utilities for ryomakaraoke."""
 
 import io
 import os
@@ -101,19 +101,19 @@ def get_default_dl_dir(platform: str) -> str:
         Path string for the default download directory.
     """
     if is_raspberry_pi():
-        return "~/pikaraoke-songs"
+        return "~/ryomakaraoke-songs"
     elif platform == "windows":
-        legacy_directory = os.path.expanduser("~\\pikaraoke\\songs")
+        legacy_directory = os.path.expanduser("~\\ryomakaraoke\\songs")
         if os.path.exists(legacy_directory):
             return legacy_directory
         else:
-            return "~\\pikaraoke-songs"
+            return "~\\ryomakaraoke-songs"
     else:
-        legacy_directory = "~/pikaraoke/songs"
+        legacy_directory = "~/ryomakaraoke/songs"
         if os.path.exists(legacy_directory):
             return legacy_directory
         else:
-            return "~/pikaraoke-songs"
+            return "~/ryomakaraoke-songs"
 
 
 def get_os_version() -> str:

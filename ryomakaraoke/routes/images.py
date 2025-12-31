@@ -3,7 +3,7 @@
 import flask_babel
 from flask import Blueprint, send_file
 
-from pikaraoke.lib.current_app import get_karaoke_instance
+from ryomakaraoke.lib.current_app import get_karaoke_instance
 
 _ = flask_babel.gettext
 
@@ -28,7 +28,7 @@ def qrcode():
 
 @images_bp.route("/logo")
 def logo():
-    """Get the PiKaraoke logo image.
+    """Get the ryomakaraoke logo image.
     ---
     tags:
       - Images

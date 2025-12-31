@@ -3,7 +3,7 @@
 import flask_babel
 from flask import Blueprint, redirect, request, url_for
 
-from pikaraoke.lib.current_app import broadcast_event, get_karaoke_instance
+from ryomakaraoke.lib.current_app import broadcast_event, get_karaoke_instance
 
 _ = flask_babel.gettext
 

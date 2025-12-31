@@ -7,8 +7,8 @@ import time
 import flask_babel
 from flask import Blueprint, Response, flash, redirect, request, send_file, url_for
 
-from pikaraoke.lib.current_app import get_karaoke_instance
-from pikaraoke.lib.file_resolver import get_tmp_dir
+from ryomakaraoke.lib.current_app import get_karaoke_instance
+from ryomakaraoke.lib.file_resolver import get_tmp_dir
 
 _ = flask_babel.gettext
 

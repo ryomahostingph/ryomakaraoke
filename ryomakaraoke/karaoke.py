@@ -22,19 +22,19 @@ from typing import Any
 import qrcode
 from flask_babel import _
 
-from pikaraoke.lib.ffmpeg import (
+from ryomakaraoke.lib.ffmpeg import (
     build_ffmpeg_cmd,
     get_ffmpeg_version,
     is_transpose_enabled,
     supports_hardware_h264_encoding,
 )
-from pikaraoke.lib.file_resolver import (
+from ryomakaraoke.lib.file_resolver import (
     FileResolver,
     delete_tmp_dir,
     is_transcoding_required,
 )
-from pikaraoke.lib.get_platform import get_os_version, get_platform, is_raspberry_pi
-from pikaraoke.lib.youtube_dl import (
+from ryomakaraoke.lib.get_platform import get_os_version, get_platform, is_raspberry_pi
+from ryomakaraoke.lib.youtube_dl import (
     build_ytdl_download_command,
     get_youtube_id_from_url,
     get_youtubedl_version,
@@ -114,7 +114,7 @@ class Karaoke:
     def __init__(
         self,
         port: int = 5555,
-        download_path: str = "/usr/lib/pikaraoke/songs",
+        download_path: str = "/usr/lib/ryomakaraoke/songs",
         hide_url: bool = False,
         hide_notifications: bool = False,
         hide_splash_screen: bool = False,
@@ -492,7 +492,7 @@ class Karaoke:
         self,
         video_url: str,
         enqueue: bool = False,
-        user: str = "Pikaraoke",
+        user: str = "ryomakaraoke",
         title: str | None = None,
     ) -> int:
         """Download a video from YouTube.
@@ -849,7 +849,7 @@ class Karaoke:
             True if the user has reached their song limit.
         """
         # Returns if a user needs to be limited or not if the limitation is on and if the user reached the limit of songs in queue
-        if self.limit_user_songs_by == 0 or user == "Pikaraoke" or user == "Randomizer":
+        if self.limit_user_songs_by == 0 or user == "ryomakaraoke" or user == "Randomizer":
             return False
         cont = len([i for i in self.queue if i["user"] == user]) + (
             1 if self.now_playing_user == user else 0
@@ -859,7 +859,7 @@ class Karaoke:
     def enqueue(
         self,
         song_path: str,
-        user: str = "Pikaraoke",
+        user: str = "ryomakaraoke",
         semitones: int = 0,
         add_to_front: bool = False,
         log_action: bool = True,
@@ -1143,7 +1143,7 @@ class Karaoke:
 
         This method blocks until stop() is called or KeyboardInterrupt.
         """
-        logging.info("Starting PiKaraoke!")
+        logging.info("Starting ryomakaraoke!")
         logging.info(f"Connect the player host to: {self.url}/splash")
         self.running = True
         while self.running:
@@ -1161,5 +1161,5 @@ class Karaoke:
                 self.log_ffmpeg_output()
                 self.handle_run_loop()
             except KeyboardInterrupt:
-                logging.warning("Keyboard interrupt: Exiting pikaraoke...")
+                logging.warning("Keyboard interrupt: Exiting ryomakaraoke...")
                 self.running = False

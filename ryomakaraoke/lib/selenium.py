@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 if TYPE_CHECKING:
-    from pikaraoke.karaoke import Karaoke
+    from ryomakaraoke.karaoke import Karaoke
 
 
 def launch_splash_screen(
@@ -47,7 +47,7 @@ def launch_splash_screen(
     try:
         driver = webdriver.Chrome(service=service, options=options)
         driver.get(f"{karaoke.url}/splash")
-        driver.add_cookie({"name": "user", "value": "PiKaraoke-Host"})
+        driver.add_cookie({"name": "user", "value": "ryomakaraoke-Host"})
         # Clicking this counts as an interaction, which will allow the browser to autoplay audio
         wait = WebDriverWait(driver, 60)
         elem = wait.until(EC.element_to_be_clickable((By.ID, "permissions-button")))
@@ -56,7 +56,7 @@ def launch_splash_screen(
     except SessionNotCreatedException as e:
         print(str(e))
         print(
-            f"\n[ERROR] Error starting splash screen. If you're running headed mode over SSH, you may need to run `export DISPLAY=:0.0` first to target the host machine's screen. Example: `export DISPLAY=:0.0; pikaraoke`\n"
+            f"\n[ERROR] Error starting splash screen. If you're running headed mode over SSH, you may need to run `export DISPLAY=:0.0` first to target the host machine's screen. Example: `export DISPLAY=:0.0; ryomakaraoke`\n"
         )
         return False
     except Exception as e:

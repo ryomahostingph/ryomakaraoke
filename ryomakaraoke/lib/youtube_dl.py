@@ -4,7 +4,7 @@ import logging
 import shlex
 import subprocess
 
-from pikaraoke.lib.get_platform import get_installed_js_runtime
+from ryomakaraoke.lib.get_platform import get_installed_js_runtime
 
 
 def get_youtubedl_version(youtubedl_path: str) -> str:

@@ -3,7 +3,7 @@
 import flask_babel
 from flask import Blueprint, render_template
 
-from pikaraoke.lib.current_app import get_karaoke_instance, get_site_name, is_admin
+from ryomakaraoke.lib.current_app import get_karaoke_instance, get_site_name, is_admin
 
 _ = flask_babel.gettext
 

@@ -40,8 +40,8 @@ ryomakaraoke = "ryomakaraoke.app:main"
 ryomakaraoke-setup = "ryomakaraoke.setup_apt:main"
 
 [project.urls]
-Homepage = "https://github.com/vicwomg/pikaraoke"
-Repository = "https://github.com/vicwomg/pikaraoke"
+Homepage = "https://github.com/vicwomg/ryomakaraoke"
+Repository = "https://github.com/vicwomg/ryomakaraoke"
 
 [build-system]
 requires = ["hatchling"]

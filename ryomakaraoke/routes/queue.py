@@ -5,7 +5,7 @@ import json
 import flask_babel
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 
-from pikaraoke.lib.current_app import (
+from ryomakaraoke.lib.current_app import (
     broadcast_event,
     get_karaoke_instance,
     get_site_name,

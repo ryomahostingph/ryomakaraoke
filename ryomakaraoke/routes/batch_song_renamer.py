@@ -13,7 +13,7 @@ from flask import (
 )
 from flask_paginate import Pagination, get_page_parameter
 
-from pikaraoke.lib.current_app import get_karaoke_instance, get_site_name, is_admin
+from ryomakaraoke.lib.current_app import get_karaoke_instance, get_site_name, is_admin
 
 _ = flask_babel.gettext
 

@@ -1,10 +1,10 @@
-# PiKaraoke
+# ryomakaraoke
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg)](https://conventionalcommits.org)
 
-PiKaraoke is a "KTV"-style karaoke song search and queueing system. It connects to your TV, and shows a QR code for computers and smartphones to connect to a web interface. From there, multiple users can seamlessly search your local track library, queue up songs, add an endless selection of new karaoke tracks from YouTube, and more. Works on Raspberry Pi, OSX, Windows, and Linux!
+ryomakaraoke is a "KTV"-style karaoke song search and queueing system. It connects to your TV, and shows a QR code for computers and smartphones to connect to a web interface. From there, multiple users can seamlessly search your local track library, queue up songs, add an endless selection of new karaoke tracks from YouTube, and more. Works on Raspberry Pi, OSX, Windows, and Linux!
 
-Pikaraoke is independently developed and maintained. If you want to support this project with a little monetary tip, it's much appreciated: <br/><br/>
+ryomakaraoke is independently developed and maintained. If you want to support this project with a little monetary tip, it's much appreciated: <br/><br/>
 <a href="https://www.buymeacoffee.com/vicwomg" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 ## Table of Contents
@@ -13,7 +13,7 @@ Pikaraoke is independently developed and maintained. If you want to support this
 - [Supported Devices / OS](#supported-devices--os)
 - [Get Started](#get-started)
 - [Screenshots](#screenshots)
-- [Developing pikaraoke](#developing-pikaraoke)
+- [Developing ryomakaraoke](#developing-ryomakaraoke)
 - [Troubleshooting](#troubleshooting)
 
 ## Features
@@ -30,7 +30,7 @@ Pikaraoke is independently developed and maintained. If you want to support this
 | Key Change / Pitch Shifting | Adjust the pitch of songs                                     |
 | File Management             | Advanced editing of downloaded file names                     |
 | Admin Mode                  | Lock down features with admin mode                            |
-| Headless Mode               | Run a dedicated pikaraoke server and stream to remote browser |
+| Headless Mode               | Run a dedicated ryomakaraoke server and stream to remote browser |
 
 ## Supported Devices / OS / Platforms
 
@@ -64,73 +64,73 @@ Chromium/Chromdriver is optional if you're running with the `--headless` option.
 
 #### Windows
 
-You may want to try the install script by @lvmasterrj: https://github.com/lvmasterrj/win-pikaraoke-installer
+You may want to try the install script by @lvmasterrj: https://github.com/lvmasterrj/win-ryomakaraoke-installer
 
-### Install pikaraoke via pip
+### Install ryomakaraoke via pip
 
 Globally or within a virtual env:
 
 ```sh
-# Install pikaraoke from PyPi
-pip install pikaraoke
+# Install ryomakaraoke from PyPi
+pip install ryomakaraoke
 ```
 
-Note: Some OS install `pip` as `pip3`. if you did not use a venv, you may need to add the `--break-system-packages` parameter to ignore the warning and install pikaraoke and its dependencies globally. You may experience package conflicts if you have other python programs installed.
+Note: Some OS install `pip` as `pip3`. if you did not use a venv, you may need to add the `--break-system-packages` parameter to ignore the warning and install ryomakaraoke and its dependencies globally. You may experience package conflicts if you have other python programs installed.
 
 ### Run
 
-Pikaraoke is now installed in the `$PATH` with the command line interface `pikaraoke`. Start by calling the pikaraoke command.
+ryomakaraoke is now installed in the `$PATH` with the command line interface `ryomakaraoke`. Start by calling the ryomakaraoke command.
 
 ```sh
-pikaraoke
+ryomakaraoke
 ```
 
-This will start pikaraoke in headed mode, and open Chrome browser with the splash screen. You can then connect to the QR code via your mobile device and start downloading and queueing songs.
+This will start ryomakaraoke in headed mode, and open Chrome browser with the splash screen. You can then connect to the QR code via your mobile device and start downloading and queueing songs.
 
-Virtual env users: note that if you close your terminal between launches, you'll need to reactivate your venv before running pikaraoke.
+Virtual env users: note that if you close your terminal between launches, you'll need to reactivate your venv before running ryomakaraoke.
 
 ### Upgrading
 
-To upgrade to the latest version of pikaraoke, run:
+To upgrade to the latest version of ryomakaraoke, run:
 
 ```sh
-pip install pikaraoke --upgrade
+pip install ryomakaraoke --upgrade
 ```
 
 ### More Options
 
-See the help command `pikaraoke --help` for available options.
+See the help command `ryomakaraoke --help` for available options.
 
 ## Docker instructions
 
 For Docker users, you can get going with one command. The deployed images includes everything you need to run in headless mode:
 
 ```sh
-docker run vicwomg/pikaraoke:latest
+docker run vicwomg/ryomakaraoke:latest
 ```
 
-For more information, [see official Dockerhub repo](https://hub.docker.com/r/vicwomg/pikaraoke)
+For more information, [see official Dockerhub repo](https://hub.docker.com/r/vicwomg/ryomakaraoke)
 
 ## Screenshots
 
 <div style="display: flex">
-<img width="250" alt="pikaraoke-nowplaying" src="https://user-images.githubusercontent.com/4107190/95813193-2cd5c180-0ccc-11eb-89f4-11a69676dc6f.png">
-<img width="250" alt="pikaraoke-queue" src="https://user-images.githubusercontent.com/4107190/95813195-2d6e5800-0ccc-11eb-8f00-1369350a8a1c.png">
-<img width="250"  alt="pikaraoke-browse" src="https://user-images.githubusercontent.com/4107190/95813182-27787700-0ccc-11eb-82c8-fde7f0a631c1.png">
-<img width="250"  alt="pikaraoke-search1" src="https://user-images.githubusercontent.com/4107190/95813197-2e06ee80-0ccc-11eb-9bf9-ddb24d988332.png">
-<img width="250"  alt="pikaraoke-search2" src="https://user-images.githubusercontent.com/4107190/95813190-2ba49480-0ccc-11eb-84e3-f902cbd489a2.png">
+<img width="250" alt="ryomakaraoke-nowplaying" src="https://user-images.githubusercontent.com/4107190/95813193-2cd5c180-0ccc-11eb-89f4-11a69676dc6f.png">
+<img width="250" alt="ryomakaraoke-queue" src="https://user-images.githubusercontent.com/4107190/95813195-2d6e5800-0ccc-11eb-8f00-1369350a8a1c.png">
+<img width="250"  alt="ryomakaraoke-browse" src="https://user-images.githubusercontent.com/4107190/95813182-27787700-0ccc-11eb-82c8-fde7f0a631c1.png">
+<img width="250"  alt="ryomakaraoke-search1" src="https://user-images.githubusercontent.com/4107190/95813197-2e06ee80-0ccc-11eb-9bf9-ddb24d988332.png">
+<img width="250"  alt="ryomakaraoke-search2" src="https://user-images.githubusercontent.com/4107190/95813190-2ba49480-0ccc-11eb-84e3-f902cbd489a2.png">
 </div>
-<img width="400" alt="pikaraoke-tv2" src="https://user-images.githubusercontent.com/4107190/95813564-019fa200-0ccd-11eb-95e1-57a002c357a3.png">
+<img width="400" alt="ryomakaraoke-tv2" src="https://user-images.githubusercontent.com/4107190/95813564-019fa200-0ccd-11eb-95e1-57a002c357a3.png">
   </p>
 
-## Developing pikaraoke
+## Developing ryomakaraoke
 
-The Pikaraoke project utilizes Poetry for dependency management and local development.
+The ryomakaraoke project utilizes Poetry for dependency management and local development.
 
 - Install poetry: [Poetry](https://python-poetry.org/docs/#installation)
 - Git clone this repo
 
-From the pikaraoke directory:
+From the ryomakaraoke directory:
 
 ```sh
 # install dependencies
@@ -138,20 +138,20 @@ poetry install
 ```
 
 ```sh
-# Run pikaraoke from the local codebase
-poetry run pikaraoke
+# Run ryomakaraoke from the local codebase
+poetry run ryomakaraoke
 ```
 
-If you don't want to install poetry, you can alternately install pikaraoke directly from the source code root:
+If you don't want to install poetry, you can alternately install ryomakaraoke directly from the source code root:
 
 ```sh
 pip install .
 ```
 
-See the [Pikaraoke development guide](https://github.com/vicwomg/pikaraoke/wiki/Pikaraoke-development-guide) for more details.
+See the [ryomakaraoke development guide](https://github.com/vicwomg/ryomakaraoke/wiki/ryomakaraoke-development-guide) for more details.
 
 ## Troubleshooting and guides
 
-See the [TROUBLESHOOTING wiki](https://github.com/vicwomg/pikaraoke/wiki/FAQ-&-Troubleshooting) for help with issues.
+See the [TROUBLESHOOTING wiki](https://github.com/vicwomg/ryomakaraoke/wiki/FAQ-&-Troubleshooting) for help with issues.
 
-There are also some great guides [on the wiki](https://github.com/vicwomg/pikaraoke/wiki/) to running pikaraoke in all manner of bizarre places including Android, Chromecast, and embedded TVs!
+There are also some great guides [on the wiki](https://github.com/vicwomg/ryomakaraoke/wiki/) to running ryomakaraoke in all manner of bizarre places including Android, Chromecast, and embedded TVs!

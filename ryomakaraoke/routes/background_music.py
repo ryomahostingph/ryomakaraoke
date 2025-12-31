@@ -7,7 +7,7 @@ import urllib
 import flask_babel
 from flask import Blueprint, jsonify, send_file
 
-from pikaraoke.lib.current_app import get_karaoke_instance
+from ryomakaraoke.lib.current_app import get_karaoke_instance
 
 background_music_bp = Blueprint("bg_music", __name__)
 

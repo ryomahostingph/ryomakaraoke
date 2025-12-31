@@ -1,6 +1,6 @@
-from pikaraoke.karaoke import Karaoke
-from pikaraoke.lib.get_platform import get_platform
-from pikaraoke.version import __version__
+from ryomakaraoke.karaoke import Karaoke
+from ryomakaraoke.lib.get_platform import get_platform
+from ryomakaraoke.version import __version__
 
 PACKAGE = __package__
 VERSION = __version__

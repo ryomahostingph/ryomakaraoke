@@ -14,28 +14,28 @@ from flask import Flask, request, session
 from flask_babel import Babel
 from flask_socketio import SocketIO
 
-from pikaraoke import karaoke
-from pikaraoke.constants import LANGUAGES
-from pikaraoke.lib.args import parse_pikaraoke_args
-from pikaraoke.lib.current_app import get_karaoke_instance
-from pikaraoke.lib.ffmpeg import is_ffmpeg_installed
-from pikaraoke.lib.file_resolver import delete_tmp_dir
-from pikaraoke.lib.get_platform import get_platform, has_js_runtime
-from pikaraoke.lib.selenium import launch_splash_screen
-from pikaraoke.routes.admin import admin_bp
-from pikaraoke.routes.background_music import background_music_bp
-from pikaraoke.routes.batch_song_renamer import batch_song_renamer_bp
-from pikaraoke.routes.controller import controller_bp
-from pikaraoke.routes.files import files_bp
-from pikaraoke.routes.home import home_bp
-from pikaraoke.routes.images import images_bp
-from pikaraoke.routes.info import info_bp
-from pikaraoke.routes.now_playing import nowplaying_bp
-from pikaraoke.routes.preferences import preferences_bp
-from pikaraoke.routes.queue import queue_bp
-from pikaraoke.routes.search import search_bp
-from pikaraoke.routes.splash import splash_bp
-from pikaraoke.routes.stream import stream_bp
+from ryomakaraoke import karaoke
+from ryomakaraoke.constants import LANGUAGES
+from ryomakaraoke.lib.args import parse_ryomakaraoke_args
+from ryomakaraoke.lib.current_app import get_karaoke_instance
+from ryomakaraoke.lib.ffmpeg import is_ffmpeg_installed
+from ryomakaraoke.lib.file_resolver import delete_tmp_dir
+from ryomakaraoke.lib.get_platform import get_platform, has_js_runtime
+from ryomakaraoke.lib.selenium import launch_splash_screen
+from ryomakaraoke.routes.admin import admin_bp
+from ryomakaraoke.routes.background_music import background_music_bp
+from ryomakaraoke.routes.batch_song_renamer import batch_song_renamer_bp
+from ryomakaraoke.routes.controller import controller_bp
+from ryomakaraoke.routes.files import files_bp
+from ryomakaraoke.routes.home import home_bp
+from ryomakaraoke.routes.images import images_bp
+from ryomakaraoke.routes.info import info_bp
+from ryomakaraoke.routes.now_playing import nowplaying_bp
+from ryomakaraoke.routes.preferences import preferences_bp
+from ryomakaraoke.routes.queue import queue_bp
+from ryomakaraoke.routes.search import search_bp
+from ryomakaraoke.routes.splash import splash_bp
+from ryomakaraoke.routes.stream import stream_bp
 
 try:
     from urllib.parse import quote
@@ -49,7 +49,7 @@ import time
 
 from gevent.pywsgi import WSGIServer
 
-args = parse_pikaraoke_args()
+args = parse_ryomakaraoke_args()
 socketio = SocketIO(async_mode="gevent", cors_allowed_origins=args.url)
 babel = Babel()
 
@@ -60,8 +60,8 @@ app.jinja_env.add_extension("jinja2.ext.i18n")
 app.config["BABEL_TRANSLATION_DIRECTORIES"] = "translations"
 app.config["JSON_SORT_KEYS"] = False
 app.config["SWAGGER"] = {
-    "title": "PiKaraoke API",
-    "description": "API for controlling PiKaraoke - a KTV-style karaoke system",
+    "title": "ryomakaraoke API",
+    "description": "API for controlling ryomakaraoke - a KTV-style karaoke system",
     "version": "1.0.0",
     "termsOfService": "",
     "hide_top_bar": True,
@@ -177,18 +177,18 @@ def poll_karaoke_state(k: karaoke.Karaoke) -> None:
 
 
 def main() -> None:
-    """Main entry point for the PiKaraoke application.
+    """Main entry point for the ryomakaraoke application.
 
     Initializes the Flask server, Karaoke engine, and splash screen.
     Blocks until the application is terminated.
     """
     platform = get_platform()
 
-    args = parse_pikaraoke_args()
+    args = parse_ryomakaraoke_args()
 
     if not is_ffmpeg_installed():
         logging.error(
-            "ffmpeg is not installed, which is required to run PiKaraoke. See: https://www.ffmpeg.org/"
+            "ffmpeg is not installed, which is required to run ryomakaraoke. See: https://www.ffmpeg.org/"
         )
         sys.exit(1)
 
@@ -241,7 +241,7 @@ def main() -> None:
 
     # expose shared configuration variables to the flask app
     app.config["ADMIN_PASSWORD"] = args.admin_password
-    app.config["SITE_NAME"] = "PiKaraoke"
+    app.config["SITE_NAME"] = "ryomakaraoke"
 
     # Expose some functions to jinja templates
     app.jinja_env.globals.update(filename_from_path=k.filename_from_path)
