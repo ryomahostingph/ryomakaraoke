@@ -1,11 +1,11 @@
-"""Pytest fixtures for PiKaraoke tests."""
+"""Pytest fixtures for ryomakaraoke tests."""
 
 import pytest
 
-from pikaraoke.lib.events import EventSystem
-from pikaraoke.lib.preference_manager import PreferenceManager
-from pikaraoke.lib.queue_manager import QueueManager
-from pikaraoke.lib.song_manager import SongManager
+from ryomakaraoke.lib.events import EventSystem
+from ryomakaraoke.lib.preference_manager import PreferenceManager
+from ryomakaraoke.lib.queue_manager import QueueManager
+from ryomakaraoke.lib.song_manager import SongManager
 
 
 class MockPlaybackController:
@@ -120,7 +120,7 @@ class MockKaraoke:
         self._socketio = value
 
     # Import the actual methods we want to test
-    from pikaraoke.karaoke import Karaoke
+    from ryomakaraoke.karaoke import Karaoke
 
     # Bind the real methods to our mock class
     get_now_playing = Karaoke.get_now_playing
