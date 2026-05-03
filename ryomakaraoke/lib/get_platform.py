@@ -117,32 +117,31 @@ def get_platform() -> str:
 
 
 def get_default_dl_dir(platform: str) -> str:
-    """Get the default download directory for the given platform.
+    """Get the default download directory for the given platform."""
 
-    Checks for legacy directory locations and returns those if they exist,
-    otherwise returns the new default location.
-
-    Args:
-        platform: Platform identifier from get_platform().
-
-    Returns:
-        Path string for the default download directory.
-    """
     if is_raspberry_pi():
         return "~/ryomakaraoke-songs"
+
     elif is_windows():
+        # 1. Environment variable override (HIGHEST PRIORITY)
+        env_path = os.environ.get("RYOMAKARAOKE_DOWNLOAD_PATH")
+        if env_path:
+            return env_path
+
+        # 2. Legacy folder check
         legacy_directory = os.path.expanduser("~\\ryomakaraoke\\songs")
         if os.path.exists(legacy_directory):
             return legacy_directory
-        else:
-            return "~\\ryomakaraoke-songs"
+
+        # 3. Default fallback
+        return "D:\\ryomakaraoke-songs"
+
     else:
         legacy_directory = "~/ryomakaraoke/songs"
         if os.path.exists(legacy_directory):
             return legacy_directory
         else:
             return "~/ryomakaraoke-songs"
-
 
 def get_os_version() -> str:
     """Get the operating system version string.
