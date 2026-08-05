@@ -32,7 +32,9 @@ from pikaraoke.lib.get_platform import (
     has_js_runtime,
     is_windows,
 )
+from pikaraoke.lib.keep_awake import KeepAwake
 from pikaraoke.lib.song_manager import SongManager
+from pikaraoke.lib.url_prefix import BasePathMiddleware
 from pikaraoke.lib.youtube_dl import upgrade_youtubedl
 from pikaraoke.routes.admin import admin_bp
 from pikaraoke.routes.background_music import background_music_bp
@@ -56,7 +58,8 @@ _ = flask_babel.gettext
 from gevent.pywsgi import WSGIServer
 
 args = parse_pikaraoke_args()
-socketio = SocketIO(async_mode="gevent", cors_allowed_origins=args.url)
+socketio_path = f"{args.base_path}/socket.io" if args.base_path else "/socket.io"
+socketio = SocketIO(async_mode="gevent", cors_allowed_origins=args.url, path=socketio_path)
 babel = Babel()
 
 
@@ -65,6 +68,11 @@ app.secret_key = os.urandom(24)
 app.jinja_env.add_extension("jinja2.ext.i18n")
 app.config["BABEL_TRANSLATION_DIRECTORIES"] = "translations"
 app.config["JSON_SORT_KEYS"] = False
+app.config["APPLICATION_ROOT"] = args.base_path or "/"
+app.config["SESSION_COOKIE_PATH"] = args.base_path or "/"
+app.config["PIKARAOKE_BASE_PATH"] = args.base_path
+app.config["PIKARAOKE_SOCKETIO_PATH"] = socketio_path
+app.wsgi_app = BasePathMiddleware(app.wsgi_app, args.base_path)
 
 # Always initialize flask-smorest Api for error handling (@bp.arguments validation).
 # Only expose the Swagger UI when --enable-swagger is passed.
@@ -134,7 +142,20 @@ def get_locale() -> str | None:
     # Use browser header
     else:
         locale = request.accept_languages.best_match(LANGUAGES.keys())
-    return locale
+
+    # An unknown code (a stale session cookie, a hand-edited ?lang=) makes Babel raise
+    # UnknownLocaleError on every render, so never hand one back.
+    return locale if locale in LANGUAGES else None
+
+
+@app.context_processor
+def inject_path_config() -> dict[str, str]:
+    """Expose path-prefix settings to templates."""
+    return {
+        "base_path": app.config["PIKARAOKE_BASE_PATH"],
+        "socketio_path": app.config["PIKARAOKE_SOCKETIO_PATH"],
+        "cookie_path": app.config["SESSION_COOKIE_PATH"],
+    }
 
 
 babel.init_app(app, locale_selector=get_locale)
@@ -241,6 +262,7 @@ def main() -> None:
         disable_bg_video=args.disable_bg_video,
         bg_video_path=args.bg_video_path,
         disable_score=args.disable_score,
+        enable_mic_passthrough=args.enable_mic_passthrough,
         limit_user_songs_by=args.limit_user_songs_by,
         avsync=float(args.avsync) if args.avsync is not None else None,
         config_file_path=args.config_file_path,
@@ -249,6 +271,7 @@ def main() -> None:
         additional_ytdl_args=getattr(args, "ytdl_args", None),
         socketio=socketio,
         preferred_language=args.preferred_language,
+        url_base_path=args.base_path,
     )
 
     # expose karaoke object to the flask app
@@ -276,9 +299,21 @@ def main() -> None:
     app.jinja_env.globals.update(filename_from_path=k.song_manager.display_name_from_path)
     app.jinja_env.globals.update(url_escape=quote)
 
-    spawn(upgrade_youtubedl)
+    if not args.skip_youtubedl_upgrade:
+        spawn(upgrade_youtubedl)
+    else:
+        logging.info("Skipping yt-dlp upgrade on startup")
 
-    server = WSGIServer(("0.0.0.0", int(args.port)), app, log=None, error_log=logging.getLogger())
+    # Pre-populate SERVER_NAME so gevent's pywsgi skips the reverse-DNS (getfqdn)
+    # lookup it otherwise runs at startup, which can hang for a long time on hosts
+    # without working reverse DNS (observed hanging PiKaraoke launch on macOS).
+    server = WSGIServer(
+        ("0.0.0.0", int(args.port)),
+        app,
+        log=None,
+        error_log=logging.getLogger(),
+        environ={"SERVER_NAME": k.ip},
+    )
     server.start()
 
     # Handle sigterm, apparently cherrypy won't shut down without explicit handling
@@ -288,6 +323,13 @@ def main() -> None:
     if (platform == "android") and not args.hide_splash_screen:
         args.hide_splash_screen = True
         logging.info("Forced to run headless mode in Android")
+
+    # Keep the host awake so idle-sleep doesn't interrupt streaming (headless has
+    # no local player window to hold a wake lock).
+    keep_awake = None
+    if args.keep_awake:
+        keep_awake = KeepAwake()
+        keep_awake.start()
 
     # Start the splash screen browser
     if not args.hide_splash_screen:
@@ -308,6 +350,9 @@ def main() -> None:
     # Close running browser when done
     if browser is not None:
         browser.close()
+
+    if keep_awake is not None:
+        keep_awake.stop()
 
     delete_tmp_dir()
     sys.exit()

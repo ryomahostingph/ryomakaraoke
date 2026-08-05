@@ -7,6 +7,7 @@ import subprocess
 import threading
 import time
 from typing import Any
+from urllib.parse import urlsplit
 
 import qrcode
 from flask_babel import _
@@ -32,6 +33,8 @@ from pikaraoke.lib.playback_controller import PlaybackController
 from pikaraoke.lib.preference_manager import PreferenceManager
 from pikaraoke.lib.queue_manager import QueueManager
 from pikaraoke.lib.song_manager import SongManager
+from pikaraoke.lib.sound_manager import SoundManager
+from pikaraoke.lib.url_prefix import append_base_path_to_url
 from pikaraoke.lib.youtube_dl import (
     get_search_results,
     get_youtubedl_version,
@@ -78,6 +81,9 @@ class Karaoke:
     # Download manager for serialized downloads
     download_manager: DownloadManager
 
+    # Microphone manager for server-side mic passthrough
+    sound_manager: SoundManager
+
     # Event system and preferences
     events: EventSystem
     preferences: PreferenceManager
@@ -99,6 +105,7 @@ class Karaoke:
         socketio=None,
         streaming_format: str = "hls",
         url: str | None = None,
+        url_base_path: str = "",
         youtubedl_proxy: str | None = None,
         # Preference parameters (defaults from PreferenceManager.DEFAULTS)
         avsync: float | None = None,
@@ -110,6 +117,7 @@ class Karaoke:
         disable_bg_music: bool | None = None,
         disable_bg_video: bool | None = None,
         disable_score: bool | None = None,
+        enable_mic_passthrough: bool | None = None,
         hide_notifications: bool | None = None,
         hide_overlay: bool | None = None,
         hide_url: bool | None = None,
@@ -183,6 +191,8 @@ class Karaoke:
         # Set non-preference attributes (not stored in config)
         self.port = port
         self.hide_splash_screen = hide_splash_screen
+        # Experimental launch-only gate: must be re-passed each run, never persisted to config.
+        self.enable_mic_passthrough = enable_mic_passthrough
         self.download_path = download_path
         self.log_level = log_level
         self.youtubedl_proxy = youtubedl_proxy
@@ -194,6 +204,7 @@ class Karaoke:
         self.streaming_format = streaming_format
         self.socketio = socketio
         self.url_override = url
+        self.url_base_path = url_base_path
         self.url = self.get_url()
 
         # Load all preference-driven attributes from config (with CLI overrides as fallback)
@@ -224,6 +235,7 @@ class Karaoke:
             events=self.events,
             filename_from_path=self.song_manager.display_name_from_path,
             streaming_format=self.streaming_format,
+            base_path=self.url_base_path,
         )
 
         # Event bridging: the coordinator wires manager events to the UI (SocketIO/notifications).
@@ -245,6 +257,14 @@ class Karaoke:
             "sync_finished",
             lambda: self.socketio.emit("sync_finished", namespace="/") if self.socketio else None,
         )
+
+        # Initialize microphone manager for server-side mic passthrough
+        self.sound_manager = SoundManager(
+            preferences=self.preferences,
+            events=self.events,
+            enabled=self.enable_mic_passthrough,
+        )
+        self.sound_manager.start()
 
         # Initialize queue manager
         self.queue_manager = QueueManager(
@@ -374,7 +394,14 @@ class Karaoke:
                 url = f"http://{socket.getfqdn().lower()}:{self.port}"
             else:
                 url = f"http://{self.ip}:{self.port}"
-        return url
+
+        if self.url_override is None:
+            return append_base_path_to_url(url, self.url_base_path)
+
+        split_url = urlsplit(url)
+        if split_url.path not in ("", "/"):
+            return url
+        return append_base_path_to_url(url, self.url_base_path)
 
     def log_settings_to_debug(self) -> None:
         """Log all current settings at debug level."""
@@ -394,9 +421,11 @@ class Karaoke:
         qr.add_data(self.url)
         qr.make()
         img = qr.make_image(image_factory=PyPNGImage)
-        # Use writable data directory instead of program directory
+        # Use writable data directory instead of program directory.
+        # Include the port so multiple instances on the same host don't
+        # overwrite each other's QR code (see issue #836).
         data_dir = get_data_directory()
-        self.qr_code_path = os.path.join(data_dir, "qrcode.png")
+        self.qr_code_path = os.path.join(data_dir, f"qrcode-{self.port}.png")
         img.save(self.qr_code_path)  # type: ignore[arg-type]
 
     def send_notification(self, message: str, color: str = "primary") -> None:
@@ -503,6 +532,7 @@ class Karaoke:
 
     def stop(self) -> None:
         """Stop the karaoke run loop."""
+        self.sound_manager.stop()
         self.running = False
 
     def handle_run_loop(self) -> None:
